@@ -1,5 +1,6 @@
 from scrapy.spider import Spider
 from scrapy.http import Request
+from scrapy.http.response.html import HtmlResponse
 from scrapy.exceptions import DontCloseSpider
 from scrapy import signals
 from content_processor import ContentProcessor
@@ -24,6 +25,8 @@ class GeneralSpider(Spider):
         raise DontCloseSpider
 
     def parse(self, response):
+        if not isinstance(response, HtmlResponse):
+            return
         pc = self.content_processor.process_response(response)
         for link in pc.links:
             r = Request(url=link.url)

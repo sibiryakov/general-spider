@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from distributed_frontera.settings.default_settings import MIDDLEWARES
 
-MAX_REQUESTS = 0
 MAX_NEXT_REQUESTS = 256
 DELAY_ON_EMPTY = 5.0
 
@@ -13,8 +12,7 @@ MIDDLEWARES.extend([
 #--------------------------------------------------------
 # Crawl frontier backend
 #--------------------------------------------------------
-BACKEND = 'distributed_frontera.backends.remote.KafkaOverusedBackend'
-KAFKA_LOCATION = 'localhost:9092'
+BACKEND = 'distributed_frontera.backends.remote.messagebus.MessageBusBackend'
 
 #--------------------------------------------------------
 # Logging
